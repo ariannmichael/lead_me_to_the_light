@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvqc68d7pfweh"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_rynlv"]
+[ext_resource type="Texture2D" uid="uid://be5g4866dsvh8" path="res://player/girl5.png" id="2_k4g52"]
+[ext_resource type="Texture2D" uid="uid://ryem13g1vuvq" path="res://player/girl4.png" id="3_c08j2"]
+[ext_resource type="Texture2D" uid="uid://dgeb7thx7reym" path="res://player/girl6.png" id="4_4cou8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfxat"]
+size = Vector2(8, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hg8jn"]
+radius = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iuqay"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k4g52")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_c08j2")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k4g52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4cou8")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_silnn"]
+size = Vector2(9, 18)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_koq4r"]
+radius = 12.0
+height = 42.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
+script = ExtResource("1_rynlv")
+dashHazardMask = 16384
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="HazardArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 20480
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_gfxat")
+
+[node name="PickupArea" type="Area2D" parent="."]
+visible = false
+position = Vector2(-1, 0)
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(2.08165e-12, -15)
+shape = SubResource("CircleShape2D_hg8jn")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.08165e-12, -14)
+sprite_frames = SubResource("SpriteFrames_iuqay")
+animation = &"run"
+frame_progress = 0.0415206
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -10)
+shape = SubResource("RectangleShape2D_silnn")
+
+[node name="DashArea" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, -13)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashArea"]
+rotation = 1.56327
+shape = SubResource("CapsuleShape2D_koq4r")
+disabled = true

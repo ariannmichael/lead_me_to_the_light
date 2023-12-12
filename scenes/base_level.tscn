@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmvxpdla51ayw"]
+
+[ext_resource type="TileSet" uid="uid://fqafpvmd0i7g" path="res://resources/tileset_platform.tres" id="1_21ac6"]
+[ext_resource type="Script" path="res://scenes/base_level.gd" id="1_m5q2x"]
+[ext_resource type="PackedScene" uid="uid://cvqc68d7pfweh" path="res://player/player.tscn" id="2_rglgc"]
+[ext_resource type="PackedScene" uid="uid://b538k37v8r0yp" path="res://scenes/game_camera.tscn" id="3_jpg10"]
+[ext_resource type="PackedScene" uid="uid://85bskbih5tgf" path="res://flag/flag.tscn" id="4_iv0m3"]
+
+[node name="BaseLevel" type="Node"]
+script = ExtResource("1_m5q2x")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_21ac6")
+cell_quadrant_size = 18
+format = 2
+
+[node name="GameCamera" parent="." instance=ExtResource("3_jpg10")]
+
+[node name="Flag" parent="." instance=ExtResource("4_iv0m3")]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_rglgc")]
