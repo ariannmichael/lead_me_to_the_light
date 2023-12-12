@@ -1,2 +1,2 @@
-# lead_me_to_the_light
+# Lead Me to the Light
 Game for the Gamejam Godot Wild Jam #64
