@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbu8xha6dve0a"]
+
+[ext_resource type="Script" path="res://scenes/level_ui.gd" id="1_mrepj"]
+[ext_resource type="Theme" uid="uid://dlh04b1pslbto" path="res://resources/theme.tres" id="1_yspq3"]
+[ext_resource type="Texture2D" uid="uid://cmxpeyre1uolf" path="res://assets/tile_0145.png" id="3_78vct"]
+[ext_resource type="FontFile" uid="uid://d3ubcvnwj0iif" path="res://resources/BitPotion_outline.ttf" id="3_wwl20"]
+
+[sub_resource type="FontVariation" id="FontVariation_mbw0e"]
+base_font = ExtResource("3_wwl20")
+
+[node name="LevelUI" type="CanvasLayer"]
+script = ExtResource("1_mrepj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_yspq3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(18, 17)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_78vct")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_mbw0e")
+text = "10/32"

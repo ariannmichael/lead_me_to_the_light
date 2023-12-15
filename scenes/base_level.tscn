@@ -1,26 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmvxpdla51ayw"]
+[gd_scene load_steps=8 format=3 uid="uid://dmvxpdla51ayw"]
 
 [ext_resource type="TileSet" uid="uid://fqafpvmd0i7g" path="res://resources/tileset_platform.tres" id="1_21ac6"]
 [ext_resource type="Script" path="res://scenes/base_level.gd" id="1_m5q2x"]
+[ext_resource type="PackedScene" uid="uid://bbu8xha6dve0a" path="res://scenes/level_ui.tscn" id="2_hjoxt"]
 [ext_resource type="PackedScene" uid="uid://cvqc68d7pfweh" path="res://player/player.tscn" id="2_rglgc"]
 [ext_resource type="PackedScene" uid="uid://b538k37v8r0yp" path="res://scenes/game_camera.tscn" id="3_jpg10"]
-[ext_resource type="PackedScene" uid="uid://85bskbih5tgf" path="res://flag/flag.tscn" id="4_iv0m3"]
+[ext_resource type="PackedScene" uid="uid://dh50bl8f73q24" path="res://flag/lamp.tscn" id="5_ja4mw"]
 
-[node name="BaseLevel" type="Node"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvnf2"]
+size = Vector2(1e+06, 10)
+
+[node name="BaseLevel" type="Node" groups=["base_level"]]
 script = ExtResource("1_m5q2x")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="LevelUI" parent="." instance=ExtResource("2_hjoxt")]
+
+[node name="TileMapTerrain" type="TileMap" parent="."]
 tile_set = ExtResource("1_21ac6")
-cell_quadrant_size = 18
+rendering_quadrant_size = 18
+format = 2
+
+[node name="TileMapTown" type="TileMap" parent="."]
 format = 2
 
 [node name="GameCamera" parent="." instance=ExtResource("3_jpg10")]
 
-[node name="Flag" parent="." instance=ExtResource("4_iv0m3")]
+[node name="HazardArea" type="Area2D" parent="."]
+position = Vector2(0, 189)
+collision_layer = 16384
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+shape = SubResource("RectangleShape2D_dvnf2")
+debug_color = Color(0.952941, 0.188235, 0.282353, 0.419608)
 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Lamps" type="Node2D" parent="."]
+
+[node name="Lamp" parent="Lamps" instance=ExtResource("5_ja4mw")]
 
 [node name="Hazards" type="Node2D" parent="."]
 

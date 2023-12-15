@@ -2,25 +2,25 @@
 
 [ext_resource type="Texture2D" uid="uid://b51r5aniu7glh" path="res://flag/tile_0131.png" id="1_70ouh"]
 [ext_resource type="Script" path="res://flag/flag.gd" id="1_hh5pu"]
-[ext_resource type="Texture2D" uid="uid://bb8oeywg3bduo" path="res://flag/tile_0111.png" id="2_ludkx"]
-[ext_resource type="Texture2D" uid="uid://bqes6bcdoa6kj" path="res://flag/tile_0112.png" id="3_mkmib"]
+[ext_resource type="Texture2D" uid="uid://bxn6g12ac1pse" path="res://flag/lamp_post2.png" id="3_e7gn6"]
+[ext_resource type="Texture2D" uid="uid://cunrm7mchhhf3" path="res://flag/lamp_post.png" id="4_2m8pf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ttcrc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ludkx")
+"texture": ExtResource("3_e7gn6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_mkmib")
+"texture": ExtResource("4_2m8pf")
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6753"]
-size = Vector2(10, 30)
+size = Vector2(13, 35)
 
 [node name="Flag" type="Node2D"]
 script = ExtResource("1_hh5pu")
@@ -33,12 +33,13 @@ offset = Vector2(2.08165e-12, -18)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ttcrc")
 autoplay = "default"
-frame_progress = 0.0533551
+frame = 1
+frame_progress = 0.64419
 centered = false
-offset = Vector2(2.08165e-12, -32)
+offset = Vector2(-13, -43)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(3, -15)
+position = Vector2(3, -17)
 collision_layer = 0
 collision_mask = 32768
 

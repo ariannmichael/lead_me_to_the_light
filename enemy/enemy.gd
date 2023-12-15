@@ -1,14 +1,13 @@
 extends CharacterBody2D
-
-enum Direction { RIGHT, LEFT }
-@export var startDirection: Direction
+class_name Enemy
 
 var max_speed = 100
 var direction = Vector2.ZERO
 var gravity = 15000
+var start_direction = Vector2.RIGHT
 
 func _ready():
-	direction = Vector2.RIGHT if startDirection == Direction.RIGHT else Vector2.LEFT
+	direction = start_direction
 	$GoalDetector.connect("area_entered", on_goal_entered)
 	$HitboxArea.connect("area_entered", on_hitbox_entered)
 
@@ -27,3 +26,6 @@ func on_goal_entered(_area2d):
 	
 func on_hitbox_entered(_area2d):
 	queue_free()
+
+func set_start_direction(new_direction):
+	start_direction = new_direction

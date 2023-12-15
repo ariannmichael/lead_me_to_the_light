@@ -16,6 +16,7 @@ var has_double_jump = false
 var has_dash = false
 var current_state = State.NORMAL
 var isStateNew = true
+var player_health = 100
 
 var defaultHazardMask = 0
 
@@ -77,7 +78,7 @@ func process_normal(delta):
 		has_dash = true
 		
 	if(has_dash and Input.is_action_just_pressed("dash")):
-		call_deferred("change_state", State.DASHING)
+		#call_deferred("change_state", State.DASHING)
 		has_dash = false
 	
 	update_animation()
